@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stopwatch App</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+
+    <div class="header-row">
+      <div class="title-group">
+        <div class="clock" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v6l4 2"></path></svg>
+        </div>
+        <h1>Stopwatch</h1>
+      </div>
+      <button id="theme-toggle" class="theme-square" title="dark/light mode" aria-pressed="false">
+        <!-- Background square (purely visual via CSS, using transparent SVG here) -->
+        <svg class="icon icon-moon" id="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path></svg>
+        <svg class="icon icon-sun" id="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="M4.93 4.93l1.41 1.41"></path><path d="M17.66 17.66l1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="M4.93 19.07l1.41-1.41"></path><path d="M17.66 6.34l1.41-1.41"></path></svg>
+      </button>
+    </div>
+    <div id="display">00:00:00.000</div>
+
+
+    <div class="buttons">
+      <button id="start" aria-pressed="false">
+        <!-- Play icon (shown by default) -->
+        <svg id="icon-play" class="btn-svg" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 3v18l15-9L5 3z"/></svg>
+        <!-- Pause icon (hidden until running) -->
+        <svg id="icon-pause" class="btn-svg" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="display:none;"><path d="M6 6h4v12H6zM14 6h4v12h-4z"/></svg>
+        <span class="btn-text">Start</span>
+      </button>
+      <button id="reset">
+        <!-- Circular rotate/redo icon (stroke-based for clarity) -->
+        <svg class="btn-svg" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="1 4 1 10 7 10"></polyline>
+          <path d="M3.51 15a9 9 0 1 0 .49-7.03L1 10"></path>
+        </svg>
+        <span class="btn-text">Reset</span>
+      </button>
+      <button id="lap">
+        <svg class="btn-svg" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 7h8"></path><path d="M8 12h8"></path><path d="M8 17h8"></path></svg>
+        <span class="btn-text">Lap</span>
+      </button>
+    </div>
+
+    <div class="laps-section">
+      <hr class="laps-divider">
+      <div class="laps-label">Lap Times</div>
+      <ul id="laps" color:black;></ul>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

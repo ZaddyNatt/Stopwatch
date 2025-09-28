@@ -1,0 +1,294 @@
+/* Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #161722, #212121); /* Dark mode default */
+  color: #fff;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+
+.container {
+  text-align: center;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+  width: 350px;
+  transition: background 0.3s ease;
+}
+
+.header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.title-group {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* small gap between clock and title */
+  flex: 1 1 auto;
+}
+.title-group h1 { margin: 0; }
+
+.header-row .clock {
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  margin-left: 6px;
+}
+.header-row .clock svg {
+  width: 22px;
+  height: 22px;
+  color: #1E3A8A; /* Indigo color */
+}
+body.light-mode .header-row .clock svg { color: #1E3A8A; }
+
+.header-row h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+#theme-toggle {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  margin-left: 10px;
+  cursor: pointer;
+  color: #fff;
+  padding: 6px;
+  border-radius: 10px;
+  transition: background 0.18s, color 0.18s, box-shadow 0.12s;
+}
+
+#theme-toggle:hover {
+  background: rgba(255,255,255,0.04);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.35) inset;
+}
+
+body.light-mode #theme-toggle {
+  color: #222;
+  background: #eee;
+}
+body.light-mode #theme-toggle:hover {
+  background: #e6e6e6;
+}
+
+/* specific square style (purple background) */
+.theme-square {
+  background: rgba(120, 88, 200, 0.95); /* deep purple */
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+}
+.theme-square:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(160,120,230,0.22);
+}
+.theme-square:hover { transform: translateY(-2px); }
+
+/* When light mode is active, make the square light */
+body.light-mode .theme-square {
+  background: #f0f0f5;
+  color: #333;
+}
+
+/* Icon color inside the square */
+.theme-square .icon { color: #fff; }
+body.light-mode .theme-square .icon { color: #333; }
+
+h1 {
+  margin-bottom: 15px;
+  font-size: 2rem;
+}
+
+#display {
+  font-size: 2.5rem;
+  margin: 20px 0;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 10px 18px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: transform 0.15s ease, opacity 0.15s ease, box-shadow 0.15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+button:hover {
+  transform: translateY(-3px);
+  opacity: 0.95;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+}
+
+#start { background-color: #2ecc71; color: white; }
+#start .btn-icon { opacity: 0.95; }
+
+#stop { background-color: #ff7b7b; color: white; }
+#stop .btn-icon { opacity: 0.95; }
+
+#reset { background-color: #f1c40f; color: #222; }
+#reset .btn-icon { opacity: 0.95; }
+
+#lap { background-color: #3498db; color: white; }
+#lap .btn-icon { opacity: 0.95; }
+
+/* Small icon size for better visual balance */
+.btn-icon {
+  font-size: 1.05rem;
+  line-height: 1;
+}
+.btn-text {
+  font-weight: 600;
+}
+
+/* Running state for the toggle start button */
+.running {
+  background-color: #ff6b6b !important; /* turn red when running */
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+#icon-pause { display: none; }
+
+/* SVG inside buttons */
+.btn-svg {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  vertical-align: middle;
+  color: rgba(255,255,255,0.95);
+}
+
+/* make sure SVG uses currentColor */
+.btn-svg [fill="currentColor"] { fill: currentColor; }
+
+/* Theme toggle SVG sizing and color */
+#theme-toggle svg {
+  width: 20px;
+  height: 20px;
+  color: #fff;
+}
+#theme-toggle:hover svg { color: #ffd966; }
+
+/* When light mode is active, show sun and hide moon */
+body.light-mode #icon-sun { display: inline-block !important; }
+body.light-mode #icon-moon { display: none !important; }
+body:not(.light-mode) #icon-moon { display: inline-block !important; }
+body:not(.light-mode) #icon-sun { display: none !important; }
+
+
+/* Lap list */
+/* Lap section */
+.laps-section {
+  margin-top: 36px;
+}
+.laps-divider {
+  border: none;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  margin: 10px 0 18px 0;
+}
+.laps-label {
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.75);
+  font-weight: 600;
+  margin-bottom: 10px;
+  text-align: left;
+}
+#laps {
+  list-style: none;
+  max-height: 220px;
+  overflow-y: auto;
+  padding: 0;
+  margin: 0;
+}
+#laps li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255,255,255,0.03);
+  margin: 8px 0;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-family: monospace;
+  color: rgba(255,255,255,0.85);
+}
+#laps li .lap-label {
+  color: rgba(255, 255, 255, 0.228);
+  font-weight: 500;
+}
+#laps li .lap-time {
+  font-family: monospace;
+  background: rgba(0,0,0,0.18);
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+
+/* Light Mode Styles */
+body.light-mode {
+  background: linear-gradient(135deg, #f5f7fa4b, #c3cfe2);
+  color: #222;
+}
+
+body.light-mode .container {
+  background: rgba(255, 255, 255, 0);
+  color: #000;
+}
+
+body.light-mode #laps li {
+  background: rgba(0, 0, 0, 0.09);
+  color: #222;
+}
+
+/* Light mode laps tweaks: darker text on light backgrounds */
+body.light-mode .laps-divider {
+  border-top-color: rgba(0,0,0,0.08);
+}
+body.light-mode .laps-label {
+  color: #333;
+}
+body.light-mode #laps li {
+  /* lighter row background but dark text for contrast */
+  background: rgba(0,0,0,0.08);
+  color: #222;
+}
+body.light-mode #laps li .lap-time {
+  background: rgba(0,0,0,0.08);
+  color: #111;
+}
+
+/* Ensure the left-side lap label is black in light mode for full contrast */
+body.light-mode #laps li .lap-label {
+  color: #000 !important;
+}
