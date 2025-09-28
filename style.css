@@ -128,9 +128,10 @@ h1 {
 
 .buttons {
   display: flex;
-  justify-content: center;
-  gap: 10px;
+  gap: 14px;                /* spacing between start/reset */
   flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
   margin-bottom: 20px;
 }
 
@@ -161,8 +162,32 @@ button:hover {
 #reset { background-color: #f1c40f; color: #222; }
 #reset .btn-icon { opacity: 0.95; }
 
-#lap { background-color: #3498db; color: white; }
-#lap .btn-icon { opacity: 0.95; }
+#lap {
+  display: inline-block;
+  margin: 18px auto 0;     /* move down and center */
+  padding: 10px 22px;
+  border-radius: 12px;
+  background: var(--lap-bg, #2EA0DB); /* keeps current color if variable exists */
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(16, 24, 40, 0.08);
+  transition: transform .12s ease, box-shadow .12s ease, filter .12s ease;
+  border: 0;
+  cursor: pointer;
+}
+
+/* subtle lift on hover / focus for better affordance */
+#lap:hover,
+#lap:focus {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(16, 24, 40, 0.12);
+  filter: saturate(1.03);
+  outline: none;
+}
+
+.laps-section {
+  margin-top: 28px; /* gives breathing room between buttons and lap list */
+  padding-top: 10px;
+}
 
 /* Small icon size for better visual balance */
 .btn-icon {
